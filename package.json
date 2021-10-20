@@ -1,0 +1,24 @@
+{
+  "name": "mark-doc-creator",
+  "version": "1.0.0",
+  "description": "A fast and light Document Creator 一个轻快的markdown文档生成器",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "auto generate document",
+    "mark-doc-creator",
+    "markdown"
+  ],
+  "author": {
+    "name": "稀饭",
+    "email": "3014375877@qq.com"
+  },
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "highlight.js": "^11.3.1",
+    "marked": "^3.0.7"
+  }
+}

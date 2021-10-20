@@ -1,0 +1,75 @@
+body {
+  padding: 0 16px;
+  color: #424242;
+}
+
+ul li,
+ol li {
+  padding: 3px 0;
+  font-size: 14px;
+}
+
+blockquote {
+  margin: 16px 0;
+}
+
+/**
+ * Tip样式
+ */
+blockquote p {
+  padding: 10px 10px;
+  border-left: 5px solid #42B983;
+  color: #666;
+  background-color: #F8F8F8;
+  font-size: 14px;
+}
+
+blockquote p a {
+  text-decoration: none;
+  color: #42B983;
+  font-weight: bold;
+}
+
+blockquote p a:hover {
+  text-decoration: underline;
+}
+
+/**
+ * 代码块样式
+ */
+pre {
+  position: relative;
+  padding: 10px;
+  background-color: #F6F8FA;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+/* code {
+  padding: 3px 5px;
+  background-color: #e7e9e9;
+  border-radius: 4px;
+} */
+
+pre .copy-btn {
+  display: none;
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  padding: 2px 5px;
+  background-color: #42B983;
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+pre .copy-btn:hover {
+  opacity: .7;
+}
+
+pre:hover .copy-btn{
+  display: inline-block;
+}

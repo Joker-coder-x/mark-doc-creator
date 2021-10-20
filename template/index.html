@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<!-- 入口文件 -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    {{ pageTitle }}
+  </title>
+  <link rel="stylesheet" href="/assets/css/reset.css" />
+  <link rel="stylesheet" href="/assets/css/common.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>
+        <!-- insert title -->
+        {{ title }}
+      </h1>
+    </header>
+    <aside class="aside-bar">
+      <ul class="nav-list">
+        {{ navList }}
+      </ul>
+    </aside>
+    <main class="main">
+      {{ iframe }}
+    </main>
+  </div>
+
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/index.js"></script>
+</body>
+</html>
