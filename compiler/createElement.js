@@ -39,13 +39,22 @@ const {
  */
 function createEntryHtml (options, filename) {
   const mdFiles = readdirSync(outerPath.md);
+
   let html = readFileSync(innerPath.entryHtml, 'utf-8'),
       iframeSrcPath;
 
   if (!filename) {
-    filename = iframeSrcPath = encodeAssetsPath(generateHtmlPathByMdPath(mdToHtmlExt(resolve(outerPath.md, mdFiles[0]))));
+    const fisrtMdFile = findFirstMdFile(outerPath.md);
+
+    filename = iframeSrcPath = fisrtMdFile ? 
+      encodeAssetsPath(generateHtmlPathByMdPath(mdToHtmlExt(fisrtMdFile))) :
+      outerPath.placeholderHtml;
   } else {
     iframeSrcPath = filename;
+  }
+
+  if (iframeSrcPath.indexOf('.html') === -1) {
+    iframeSrcPath = outerPath.placeholderHtml;
   }
 
   const newHtml = replaceHtml(html, {
@@ -107,14 +116,12 @@ function createSubNavList (dirname, filename, userDomain, userPort) {
 
   const isActive = filename.includes(generateHtmlPathByMdPath(dirname));
 
-  return `
-    <li class="nav-item ${ isActive ? 'active' : '' }" data-role="dir">
+  return `<li class="nav-item ${ isActive ? 'active' : '' }" data-role="dir">
       <a class="lk" herf="javascript:;">
         ${dirname.split(sep).pop()}
       </a>
       <ul class="sub-nav-list">${itemsTemplate}</ul>
-    </li>
-  `;
+    </li>`;
 }
 
 /**
@@ -126,13 +133,11 @@ function createSubNavList (dirname, filename, userDomain, userPort) {
  * @returns {string}
  */
 function createNavItem(filename, userDomain, userPort, isActive) {
-  return `
-    <li class="nav-item ${isActive ? 'active' : ''}" data-role="item">
+  return `<li class="nav-item ${isActive ? 'active' : ''}" data-role="item">
       <a class="lk" href="${_formatBaseUrl(userDomain, userPort) + `/assets/html/` + _removeWorkSpaceDir(filename)}" target="iframe">
         ${getPlainFileName(filename)}
       </a>
-    </li>
-  `;
+    </li>`;
 }
 
 /**
@@ -143,9 +148,7 @@ function createNavItem(filename, userDomain, userPort, isActive) {
  * @returns {string}
  */
 function createIframe (filename, userDomain, userPort) {
-  return `
-    <iframe src="${_formatBaseUrl(userDomain, userPort) + `/` + _removeUserRootDir(filename)}" name="iframe" id="iframe" frameborder="0"></iframe>
-  `;
+  return `<iframe src="${_formatBaseUrl(userDomain, userPort) + `/` + _removeUserRootDir(filename)}" name="iframe" id="iframe" frameborder="0"></iframe>`;
 }
 
 /**
@@ -188,6 +191,32 @@ function _formatBaseUrl (userDomain, userPort) {
   } else {
     return `${domain}:${port}`;
   }
+}
+
+function findFirstMdFile (dirPath) {
+  const files = readdirSync(dirPath);
+
+  let targetPath,
+      file;
+
+  for(let i = 0, l = files.length; i < l; i ++) {
+    file = files[i];
+    const absPath = resolve(dirPath, file);
+
+    if (!isDir(absPath)) {      
+      if (file.indexOf('.md') !== -1) {
+        targetPath = absPath;
+        break;
+      } 
+    } else {
+      targetPath = findFirstMdFile(absPath);
+      if (targetPath) {
+        break;
+      }
+    }
+  } 
+
+  return targetPath;
 }
 
 module.exports = {

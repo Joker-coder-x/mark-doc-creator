@@ -1,5 +1,17 @@
-const { watch, statSync } = require('fs');
-const { parse, sep, resolve } = require('path');
+const { 
+  watch, 
+  statSync, 
+  unlinkSync, 
+  mkdirSync, 
+  rmSync 
+} = require('fs');
+
+const { 
+  parse, 
+  sep, 
+  resolve 
+} = require('path');
+
 const { userRootDir } = require('../config');
 
 const matchMustach = /{{(.*?)}}/g;
@@ -19,6 +31,30 @@ function _isDir (path) {
     throw err
   }
 } 
+
+function _unlinkSync (filePath) {
+  try {
+    return unlinkSync(filePath);
+  } catch(err) {
+    console.log(`删除[${filePath}]文件失败!`);
+  }
+}
+
+function _mkdirSync (dirPath) {
+  try {
+    return mkdirSync(dirPath);
+  } catch(err) {
+    console.log(`创建[${dirPath}]文件夹失败!`);
+  }
+}
+
+function _rmSync (dirPath, options) {
+  try {
+    return rmSync(dirPath, options);
+  } catch(err) {
+    console.log(`删除[${dirPath}]文件夹失败!`);
+  }
+}
 
 function replaceHtml (html, data) {
   return html.replace(matchMustach, (_, key) => {
@@ -64,6 +100,9 @@ function encodeAssetsPath (absPath) {
 module.exports = {
   watch: _watch,
   isDir: _isDir,
+  unlinkSync: _unlinkSync,
+  mkdirSync: _mkdirSync,
+  rmSync: _rmSync,
   replaceHtml,
   mdToHtmlExt,
   htmlToMdExt,

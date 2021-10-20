@@ -16,12 +16,14 @@ function compileMdDir (absDirPath = outerPath.md) {
     const mdFiles = readdirSync(absDirPath);
 
     mdFiles.forEach(md => {
-      if (extname(md) !== ".md") {
-        return;
-      } 
-
       const absPath = resolve(absDirPath, md);
-      isDir(absPath) ? compileMdDir(absPath) : markdownToHtml(absPath);
+
+      if (isDir(absPath)) {
+        compileMdDir(absPath)
+      } else if (extname(md) === ".md") {
+        // 只编译.md扩展名的文件
+        markdownToHtml(absPath)
+      }
     });
   } catch(err) {
     console.log(err);

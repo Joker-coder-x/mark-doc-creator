@@ -67,6 +67,7 @@ body {
 
 .aside-bar .nav-list>.nav-item.active>.lk{
   border-left: 4px solid #3eaf7c;
+  font-weight: bold;
 }
 
 .aside-bar .nav-item.active>.lk{

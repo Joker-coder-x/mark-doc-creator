@@ -23,7 +23,8 @@ const outerPath = {
   css: resolve(__dirname, "../../assets/css"),
   html: resolve(__dirname, "../../assets/html"),
   md: resolve(__dirname, "../../workspace"),
-  entryHtml: resolve(__dirname, "../../index.html")
+  entryHtml: resolve(__dirname, "../../index.html"),
+  placeholderHtml: resolve(__dirname, "../../assets/html/__placeholder.html")
 };
 
 module.exports = {
