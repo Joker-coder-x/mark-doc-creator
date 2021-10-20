@@ -14,7 +14,8 @@ const {
 const { 
   watch, 
   mdToHtmlExt, 
-  generateHtmlPathByMdPath
+  generateHtmlPathByMdPath,
+  encodeAssetsPath
 } = require('../shared/tools');
 
 
@@ -66,7 +67,7 @@ function watchMarkDown () {
         case 'rename':
           if (!existsSync(absPath)) {
             // 删除了某md文件
-            unlinkSync(encodeURI(mdToHtmlExt(generateHtmlPathByMdPath(absPath))));
+            unlinkSync(encodeAssetsPath(mdToHtmlExt(generateHtmlPathByMdPath(absPath))));
           }
           break;
         default:

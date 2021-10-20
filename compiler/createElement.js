@@ -43,7 +43,7 @@ function createEntryHtml (options, filename) {
       iframeSrcPath;
 
   if (!filename) {
-    filename = iframeSrcPath = generateHtmlPathByMdPath(mdToHtmlExt(resolve(outerPath.md, mdFiles[0])));
+    filename = iframeSrcPath = encodeAssetsPath(generateHtmlPathByMdPath(mdToHtmlExt(resolve(outerPath.md, mdFiles[0]))));
   } else {
     iframeSrcPath = filename;
   }
