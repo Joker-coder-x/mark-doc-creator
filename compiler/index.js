@@ -1,5 +1,5 @@
 const { readdirSync } = require('fs');
-const { resolve } = require('path');
+const { resolve, extname } = require('path');
 
 const { outerPath } = require('../config');
 const { isDir } = require('../shared/tools');
@@ -16,6 +16,10 @@ function compileMdDir (absDirPath = outerPath.md) {
     const mdFiles = readdirSync(absDirPath);
 
     mdFiles.forEach(md => {
+      if (extname(md) !== ".md") {
+        return;
+      } 
+
       const absPath = resolve(absDirPath, md);
       isDir(absPath) ? compileMdDir(absPath) : markdownToHtml(absPath);
     });

@@ -1,6 +1,6 @@
 {
   "name": "mark-doc-creator",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A fast and light Document Creator 一个轻快的markdown文档生成器",
   "main": "index.js",
   "scripts": {

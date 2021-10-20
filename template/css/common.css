@@ -31,12 +31,19 @@ body {
   position: fixed;
   left: 0;
   top: 0;
+  overflow-y: auto;
   z-index: 10;
   height: 100%;
   width: 200px;
   padding: 80px 0 20px 0;
   background-color: #F6F8FA;
   box-sizing: border-box;
+  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.aside-bar::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
 }
 
 .aside-bar  .nav-item {
@@ -47,7 +54,7 @@ body {
   display: block;
   padding: 3px 20px;
   color: #2c3e50;
-  font-size: 1em;
+  font-size: 14px;
   text-decoration: none;
   border-left: 4px solid transparent;
   box-sizing: border-box;
