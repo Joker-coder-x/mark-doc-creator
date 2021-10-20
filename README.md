@@ -34,7 +34,7 @@ npm i vite -D
   "build": "vite build"
 }
 ```
-5. 安装[vite-doc-creator](https://github.com/xiaoyesensen/vite-doc-creator)。作者：[稀饭](https://github.com/Joker-coder-x)
+5. 安装[mark-doc-creator](https://github.com/xiaoyesensen/vite-doc-creator)。作者：[稀饭](https://github.com/Joker-coder-x)
 ```
 npm i mark-doc-creator -D
 ```
